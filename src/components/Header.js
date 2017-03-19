@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import LeaderBoard from './LeaderBoard.js'
-import icon from './ic_sort_white_24dp_2x.png';
 
 const styles = {
   header: {
