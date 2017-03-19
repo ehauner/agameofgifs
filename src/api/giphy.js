@@ -12,8 +12,8 @@ function searchGiphy(searchTerm) {
     xmlhttp.onreadystatechange = function() {
       if (xmlhttp.readyState === XMLHttpRequest.DONE) {
         if (xmlhttp.status === 200) {
-          const urls = extractUrls(xmlhttp.responseText);
-          resolve(urls);
+          const imageUrls = extractUrls(xmlhttp.responseText);
+          resolve(imageUrls);
         }
         else {
           reject(`Request failed with response code ${xmlhttp.status}.`);
@@ -29,7 +29,7 @@ function searchGiphy(searchTerm) {
 function extractUrls(response) {
   const dataArray = JSON.parse(response).data;
   return dataArray.map(function (giphyObject) {
-    return giphyObject.url;
+    return giphyObject.images.original.url;
   });
 }
 
