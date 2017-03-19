@@ -37,16 +37,17 @@ class App extends Component {
 
   // Push winning id to Firebase
   submitGif() {
-    console.log(this.state);
-    // base.push('gifs', {
-    //   data: {
-    //     url: this.state.selectedGif,
-    //     player: this.state.playerId
-    //   },
-    //   then(err){
-    //     console.log(console.error(err))
-    //   }
-    // });
+    base.push('gifs', {
+      data: {
+        url: this.state.selectedGif,
+        player: this.state.playerId
+      },
+      then(err){
+        if(err){
+          console.error(err);
+        }
+      }
+    });
   }
 
   selectGif(url) {
