@@ -45,7 +45,7 @@ class App extends Component {
         <Header />
         <SearchBar />
         <p>Round: {this.state.round}</p>
-        <GifTable urls = {this.getDummyGifUrls()} />
+        <GifTable urls={this.getDummyGifUrls()} />
         <Footer />
       </div>
     );

@@ -2,7 +2,8 @@ import React, { Component } from 'react';
 
 const styles = {
   gif: {
-    width: '33%',
+    width: '48%',
+    margin: '1%'
   }
 };
 
