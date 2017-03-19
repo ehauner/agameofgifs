@@ -21,7 +21,8 @@ export default class Game extends Component {
     super(props);
     this.state = {
       selectedGif: null,
-      hasSubmitted: false
+      hasSubmitted: false,
+      showLeaderBoard: false,
     }
 
     this.sleep = this.sleep.bind(this);
@@ -106,27 +107,31 @@ export default class Game extends Component {
     });
   }
 
+  toggleLeaderBoard() {
+    this.setState({
+      showLeaderBoard: !this.state.showLeaderBoard,
+    });
+  }
+
   getGameRendering() {
     const modUrls = this.props.urls !== undefined ? this.props.urls : [];
     if (this.state.hasSubmitted) {
       return (
         <div className="Game">
-          <Header isGameMaster={this.props.isGameMaster} playerId={this.props.playerId}/>
+          <Header isGameMaster={this.props.isGameMaster} playerId={this.props.playerId} setShowLeaderBoard={this.setShowLeaderBoard} players={this.props.players}/>
           <Showdown urls={modUrls} selectGif={(url) => this.selectGif(url)} selectedGif={this.state.selectedGif}  />
         </div>);
     } else if (this.props.isGameMaster) {
       return (
         <div className="Game">
-          <LeaderBoard players = {this.props.players}/>
-          <Header isGameMaster={this.props.isGameMaster} playerId={this.props.playerId}/>
+          <Header isGameMaster={this.props.isGameMaster} playerId={this.props.playerId} setShowLeaderBoard={this.setShowLeaderBoard} players={this.props.players}/>
           <Showdown urls={modUrls} selectGif={(url) => this.selectGif(url)} selectedGif={this.state.selectedGif} />
           <Footer submitGif={() => this.submitGif()}/>
         </div>);
     } else {
       return (
         <div className="Game">
-          <LeaderBoard players = {this.props.players}/>
-          <Header isGameMaster={this.props.isGameMaster} playerId={this.props.playerId}/>
+          <Header isGameMaster={this.props.isGameMaster} playerId={this.props.playerId} setShowLeaderBoard={this.setShowLeaderBoard} players={this.props.players}/>
           <SearchBar selectGif={(url) => this.selectGif(url)} selectedGif={this.state.selectedGif} />
           <Footer submitGif={() => this.submitGif()} />
         </div>);

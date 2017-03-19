@@ -2,8 +2,15 @@ import React, { Component } from 'react';
 
 const styles={
   playerSlot: {
-    width:'100%',
-    boxShadow: "0px 1px 5px #666666",
+    textAlign: 'left',
+    paddingLeft: '10px',
+    color: 'black',
+  },
+  playerSlotMe: {
+    textAlign: 'left',
+    paddingLeft: '10px',
+    backgroundColor: '#e6e6e6',
+    color: 'black',
   },
 };
 
@@ -12,10 +19,19 @@ export default class PlayerSlot extends Component {
 
 
   render() {
-    return (
-      <div style= {styles.playerSlot}>
-      {`Player Name: ${this.props.playerKey.slice(-6,-1)} --- Player score: ${this.props.playerScore}`}
-      </div>
-    );
+    if (!this.props.isMe) {
+      return (
+        <div style= {styles.playerSlot}>
+        {`Player ${this.props.playerKey.slice(-6,-1)}: ${this.props.playerScore}`}
+        </div>
+      );
+    }
+    else {
+      return (
+        <div style= {styles.playerSlotMe}>
+        {`Player ${this.props.playerKey.slice(-6,-1)}: ${this.props.playerScore}`}
+        </div>
+      );
+    }
   }
 }

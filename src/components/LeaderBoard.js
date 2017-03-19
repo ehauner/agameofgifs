@@ -4,7 +4,7 @@ import PlayerSlot from './PlayerSlot.js'
 const styles={
   leaderBoard: {
     width:'100%',
-    marginTop: '50px',
+    marginTop:'15px'
   },
 };
 
@@ -16,8 +16,9 @@ export default class LeaderBoard extends Component {
   }
 
   renderPlayers() {
+    console.log(this.props.playerId);
     return this.sortPlayers(this.props.players).map((player) =>
-    <PlayerSlot key = {Math.random()} playerKey = {player.key} playerScore = {player.score}/> )
+    <PlayerSlot key={Math.random()} playerKey={player.key} playerScore={player.score} isMe={this.props.playerId === player.key}/> )
   }
 
   render() {

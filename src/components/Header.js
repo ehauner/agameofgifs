@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import LeaderBoard from './LeaderBoard.js'
 
 const styles = {
   header: {
@@ -25,6 +26,7 @@ export default class Header extends Component {
     return (
       <div style={styles.header}>
         <h2>{role}</h2>
+        <LeaderBoard players={this.props.players} playerId={this.props.playerId} />
       </div>
     )
   }
