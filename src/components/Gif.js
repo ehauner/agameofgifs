@@ -3,6 +3,7 @@ import React, { Component } from 'react';
 const styles = {
   gif: {
     height: '160px',
+    maxWidth: '98%',
     padding: '1%',
   },
   selected: {

@@ -6,6 +6,7 @@ import GifTable from './GifTable.js'
 const styles={
   search: {
     width: '100%',
+    marginTop: '50px',
   },
   searchBar: {
     width: '92%',
@@ -43,7 +44,7 @@ export default class SearchBar extends Component {
 
   renderGifTable() {
     if (this.state.searchResults) {
-      return <GifTable urls={this.state.searchResults.slice(0,4)} selectGif={this.props.selectGif} selectedGif={this.props.selectedGif}/>
+      return <GifTable urls={this.state.searchResults.slice(0,10)} selectGif={this.props.selectGif} selectedGif={this.props.selectedGif}/>
     }
     else {
       return null
