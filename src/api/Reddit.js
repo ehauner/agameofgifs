@@ -14,7 +14,14 @@ function populateFromReddit() {
   };
   firebase.initializeApp(config);
   const database = firebase.database();
-  firebase.database().ref('ReactionPrompts').set(MRWData);
+  let val = 1;
+  firebase.database().ref('ReactionPrompts').set(MRWData.map((prompt) => {
+  let num = val;
+  if (val ==1) {
+    val= 0;
+  };
+  return({prompt, selected: num})
+} ));
 }
 
 export { populateFromReddit };

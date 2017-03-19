@@ -21,15 +21,42 @@ export default class Game extends Component {
     super(props);
     this.state = {
       selectedGif: null,
-      hasSubmitted: false
+      hasSubmitted: false,
+      reactionPrompt: null,
     }
 
     this.sleep = this.sleep.bind(this);
+    this.updateSelectedReaction = this.updateSelectedReaction.bind(this);
   }
 
   sleep(ms) {
     return new Promise(resolve => setTimeout(resolve, ms));
   }
+
+  updateSelectedReaction() {
+
+    base.fetch('ReactionPrompts', {
+      context: this,
+      asArray: true}).then((prompts) => {
+        console.log(prompts);
+        for (let i = 0; i <prompts.length; i++) {
+          if (prompts[i].selected ===1){
+            base.post(`ReactionPrompts/${i}/selected`, {
+              data:  0
+            })
+            base.post(`ReactionPrompts/${(i+1)}/selected`, {
+              //TODO: handle wrap around
+              data:  1
+            })
+            break;
+          }
+        }
+      }
+    )
+    }
+
+componentWillUpdate(nextProps, nextState) {
+}
 
   // Push winning id to Firebase
   submitGif() {
@@ -55,10 +82,6 @@ export default class Game extends Component {
           }
         }
 
-        console.log(winningGifId);
-        console.log(winningPlayerId);
-        console.log(this.state.selectedGif);
-        console.log(gifs);
         base.post(`players/${winningPlayerId}/score`, {
             data: newWinningPlayerScore
         });
@@ -78,6 +101,7 @@ export default class Game extends Component {
       }).catch(err => {
         console.log(err);
       })
+      this.updateSelectedReaction();
     } else {
       base.push('gifs', {
         data: {
