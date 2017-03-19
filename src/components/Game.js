@@ -39,6 +39,7 @@ export default class Game extends Component {
       }).then(gifs => {
         let winningGifId = null;
         let winningPlayerId = null;
+        let newWinningPlayerScore = 0;
         for (let i = 0; i < gifs.length; i++) {
           if (gifs[i].url === this.state.selectedGif) {
             winningGifId = gifs[i].key;
@@ -46,10 +47,20 @@ export default class Game extends Component {
             break;
           }
         }
+         for (let i=0; i<this.props.players.length; i++) {
+          if (this.props.players[i].key === winningPlayerId) {
+            newWinningPlayerScore = (1+this.props.players[i].score);
+            break;
+          }
+        }
+
         console.log(winningGifId);
         console.log(winningPlayerId);
         console.log(this.state.selectedGif);
         console.log(gifs);
+        base.post(`players/${winningPlayerId}/score`, {
+            data: newWinningPlayerScore
+        });
         base.post(`rounds/${this.props.roundId}/winningGif`, {
           data: winningGifId
         }).then(() => {

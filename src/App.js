@@ -21,11 +21,14 @@ class App extends Component {
       gameMaster: null,
       winningGif: null,
       winningGifUrl: null,
-      roundId: null
+      roundId: null,
+      players: null,
     };
     this.setStateFromRounds = this.setStateFromRounds.bind(this);
     this.onJoinGame = this.onJoinGame.bind(this);
   }
+
+
 
   componentDidMount() {
    window.addEventListener("beforeunload", function (e) {
@@ -33,6 +36,12 @@ class App extends Component {
       e.returnValue = dialogText;
       return dialogText;
     })
+    base.syncState(`players`, {
+      context: this,
+      state: 'players',
+      asArray: true,
+      keepKeys: true,
+  });
   }
 
   setStateFromRounds(roundsData) {
@@ -125,14 +134,15 @@ class App extends Component {
           }
         }
         this.setState({
-          winningGifUrl: newWinningGifUrl
+          winningGifUrl: newWinningGifUrl,
         });
       });
     } else if (this.state.playerId) {
       return <Game urls={this.state.urls}
               isGameMaster={this.state.gameMaster === this.state.playerId}
               playerId={this.state.playerId}
-              roundId={this.state.roundId}/>
+              roundId={this.state.roundId}
+              players = {this.state.players}/>
     } else {
       return <button type="button" onClick={this.onJoinGame}>Join Game</button>;
     }
