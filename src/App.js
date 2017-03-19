@@ -68,7 +68,7 @@ class App extends Component {
     return (
       <div className="App">
         <Header isGameMaster={this.state.isGameMaster} playerId={this.state.playerId}/>
-        <SearchBar />
+        <SearchBar selectGif={(url) => this.selectGif(url)} selectedGif={this.state.selectedGif} />
         <p>Round: {this.state.round}</p>
         <GifTable urls={this.getDummyGifUrls()} selectGif={(url) => this.selectGif(url)} selectedGif={this.state.selectedGif} />
         <Footer submitGif={this.submitGif} />

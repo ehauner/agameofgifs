@@ -8,11 +8,14 @@ const styles={
     width: '100%',
   },
   searchBar: {
-    width: '100%',
+    width: '92%',
     border: 'none',
     boxShadow: "0px 2px 10px #666666",
     fontSize: '20px',
-    padding: '10px 15px',
+    padding: '10px 4%',
+  },
+  gifTable: {
+    width:'100%',
   },
 };
 
@@ -39,7 +42,7 @@ export default class SearchBar extends Component {
 
   renderGifTable() {
     if (this.state.searchResults) {
-      return <GifTable urls={this.state.searchResults.slice(0,4)}/>
+      return <GifTable urls={this.state.searchResults.slice(0,4)} selectGif={this.props.selectGif} selectedGif={this.props.selectedGif}/>
     }
     else {
       return null
@@ -49,7 +52,7 @@ export default class SearchBar extends Component {
   render() {
     return (
       <div className="GifTable">
-      <form className={styles.search} onSubmit={this.handleSearchArg.bind(this)}>
+      <form style={styles.search} onSubmit={this.handleSearchArg.bind(this)}>
         <input
           style={styles.searchBar}
           type="text"
@@ -57,7 +60,7 @@ export default class SearchBar extends Component {
           placeholder={(this.state.query == null ? 'Search Giphy' : this.state.query)}
         />
       </form>
-      <div className="GifTable">{this.renderGifTable()}</div>
+      <div style={styles.gifTable}>{this.renderGifTable()}</div>
       </div>
     )
   }
