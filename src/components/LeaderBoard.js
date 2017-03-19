@@ -4,7 +4,10 @@ import PlayerSlot from './PlayerSlot.js'
 const styles={
   leaderBoard: {
     width:'100%',
-    marginTop:'15px'
+    marginTop:'5px',
+    backgroundColor: 'white',
+    boxShadow: "0px 2px 10px #666666",
+    padding: '5px 0',
   },
 };
 
@@ -24,7 +27,7 @@ export default class LeaderBoard extends Component {
   render() {
     return (
       <div style= {styles.leaderBoard}>
-      {this.renderPlayers()}
+        {this.renderPlayers()}
       </div>
     );
   }

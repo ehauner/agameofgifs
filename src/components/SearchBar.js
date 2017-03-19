@@ -6,6 +6,7 @@ import GifTable from './GifTable.js'
 const styles={
   search: {
     width: '100%',
+    marginTop: '44px',
   },
   searchBar: {
     width: '92%',
