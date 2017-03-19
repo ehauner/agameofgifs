@@ -20,6 +20,8 @@ class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      playerId: null,
+      isGameMaster: true,
       round: null,
     }
   }
@@ -42,10 +44,10 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        <Header />
+        <Header isGameMaster={this.state.isGameMaster} playerId={this.state.playerId}/>
         <SearchBar />
         <p>Round: {this.state.round}</p>
-        <GifTable urls = {this.getDummyGifUrls()} />
+        <GifTable urls={this.getDummyGifUrls()} />
         <Footer />
       </div>
     );

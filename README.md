@@ -1,3 +1,35 @@
+## Database contents
+
+games: [
+  id: {
+    "players" : Array[Int],
+    "rounds" : Array[Int]
+  }
+]
+
+players: [
+  id: {
+    "score" : Int
+  }
+]
+
+rounds: [
+  id: {
+    "gifs" : Array[Int],
+    "gameMaster" : Int
+    "winningGif" : Int
+  }
+]
+
+gifs: [
+  id: {
+    "url" : String,
+    "player" : Int
+  }
+]
+
+# A Game Of Gifs
+
 This project was bootstrapped with [Create React App](https://github.com/facebookincubator/create-react-app).
 
 Below you will find some information on how to perform common tasks.<br>
