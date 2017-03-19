@@ -33,13 +33,6 @@ class App extends Component {
     });
   }
 
-  getDummyGifUrls() {
-      return( ['https://media.giphy.com/media/l0Iy59GA3gtCEgBkk/giphy.gif',
-                'https://media.giphy.com/media/3ohze1TZQRsSB7ZzBm/giphy.gif',
-                'https://media.giphy.com/media/4QdAF8Mby9vW0/giphy.gif',
-                'https://media.giphy.com/media/l0K4fIEZ1FFiWFJPq/giphy.gif'
-            ])
-  }
 
   render() {
     return (
@@ -47,7 +40,6 @@ class App extends Component {
         <Header isGameMaster={this.state.isGameMaster} playerId={this.state.playerId}/>
         <SearchBar />
         <p>Round: {this.state.round}</p>
-        <GifTable urls={this.getDummyGifUrls()} />
         <Footer />
       </div>
     );
