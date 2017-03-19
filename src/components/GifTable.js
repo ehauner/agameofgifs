@@ -7,7 +7,6 @@ export default class GifTable extends Component {
     return (
         <div className="GifTable">
             <h1>{this.getGifs()}</h1>
-            <p>"test"</p>
         </div>
     )
   }

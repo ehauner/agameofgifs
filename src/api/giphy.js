@@ -29,7 +29,7 @@ function searchGiphy(searchTerm) {
 function extractUrls(response) {
   const dataArray = JSON.parse(response).data;
   return dataArray.map(function (giphyObject) {
-    return giphyObject.images.original.url;
+    return giphyObject.images.downsized.url;
   });
 }
 
