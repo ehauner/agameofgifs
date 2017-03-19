@@ -91,17 +91,18 @@ export default class Game extends Component {
   }
 
   getGameRendering() {
+    const modUrls = this.props.urls !== undefined ? this.props.urls : [];
     if (this.state.hasSubmitted) {
       return (
         <div className="Game">
           <Header isGameMaster={this.props.isGameMaster} playerId={this.props.playerId}/>
-          <Showdown urls={this.props.urls} />
+          <Showdown urls={modUrls} />
         </div>);
     } else if (this.props.isGameMaster) {
       return (
         <div className="Game">
           <Header isGameMaster={this.props.isGameMaster} playerId={this.props.playerId}/>
-          <Showdown urls={this.props.urls} />
+          <Showdown urls={modUrls} />
           <Footer submitGif={() => this.submitGif()}/>
         </div>);
     } else {
