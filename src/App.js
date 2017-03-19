@@ -70,9 +70,7 @@ class App extends Component {
         <Header isGameMaster={this.state.isGameMaster} playerId={this.state.playerId}/>
         <SearchBar selectGif={(url) => this.selectGif(url)} selectedGif={this.state.selectedGif} />
         <p>Round: {this.state.round}</p>
-        <GifTable urls={this.getDummyGifUrls()} selectGif={(url) => this.selectGif(url)} selectedGif={this.state.selectedGif} />
-        <Footer submitGif={this.submitGif} />
-        <button onClick={() => this.submitGif()}>Submit</button>
+        <Footer submitGif={() => this.submitGif()} />
       </div>
     );
   }

@@ -13,6 +13,7 @@ const styles={
     boxShadow: "0px 2px 10px #666666",
     fontSize: '20px',
     padding: '10px 4%',
+    cursor: 'pointer',
   },
   gifTable: {
     width:'100%',
@@ -57,6 +58,7 @@ export default class SearchBar extends Component {
           style={styles.searchBar}
           type="text"
           ref="searchBar"
+          onFocus={() => this.props.selectGif(null)}
           placeholder={(this.state.query == null ? 'Search Giphy' : this.state.query)}
         />
       </form>

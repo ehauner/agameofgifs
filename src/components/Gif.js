@@ -2,13 +2,14 @@ import React, { Component } from 'react';
 
 const styles = {
   gif: {
-    width: '48%',
-    padding: '1%'
+    height: '160px',
+    padding: '1%',
   },
   selected: {
-    width: '48%',
+    height: '170px',
+    maxWidth: '98%',
     padding: '1%',
-    backgroundColor: 'green',
+    backgroundColor: '#3594fb',
     opacity: 0.7
   }
 };
