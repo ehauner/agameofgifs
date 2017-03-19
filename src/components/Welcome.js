@@ -16,6 +16,12 @@ const styles = {
   gif: {
     marginTop: '5%',
     width: '90%',
+  },
+  authors: {
+    color: '#666666',
+    fontStyle: 'italic',
+    width: '90%',
+    margin: '5% auto',
   }
 };
 
@@ -44,6 +50,7 @@ export default class Welcome extends Component {
         <p style={{fontSize:'20px'}}>Have laughs. Have fun.</p>
         <button style={styles.button} type="button" onClick={() => this.props.onJoinGame()}>Join Game</button>
         <img style={styles.gif} src={this.state.url} />
+        <p style={styles.authors}>Made by Ed, Erik, and Jordan at nwHacks 2017 with help from Giphy</p>
       </div>
     );
   }
