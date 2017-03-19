@@ -50,8 +50,6 @@ class App extends Component {
   }
 
   selectGif(url) {
-    console.log(this.state);
-    console.log(this.props);
     this.setState({
       selectedGif: url
     })
@@ -71,7 +69,7 @@ class App extends Component {
         <Header isGameMaster={this.state.isGameMaster} playerId={this.state.playerId}/>
         <SearchBar />
         <p>Round: {this.state.round}</p>
-        <GifTable urls={this.getDummyGifUrls()} selectGif={() => this.selectGif()} />
+        <GifTable urls={this.getDummyGifUrls()} selectGif={(url) => this.selectGif(url)} />
         <Footer submitGif={this.submitGif} />
         <button onClick={() => this.submitGif()}>Submit</button>
       </div>
