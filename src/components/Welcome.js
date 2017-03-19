@@ -11,6 +11,7 @@ const styles = {
     height: '50px',
     width: '200px',
     fontSize: '20px',
+    cursor: 'pointer',
   },
   gif: {
     marginTop: '5%',

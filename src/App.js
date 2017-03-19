@@ -156,7 +156,7 @@ class App extends Component {
               players = {this.state.players}/>
     } else {
       return (
-        <Welcome joinGame={() => this.onJoinGame()}/>
+        <Welcome onJoinGame={() => this.onJoinGame()}/>
       )
     }
   }
