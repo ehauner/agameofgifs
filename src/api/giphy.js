@@ -1,5 +1,6 @@
 /**
-* Searches giphy for the search term and returns all of the URLs.
+* Searches giphy for the search term and returns all of the URLs as the data
+* in a promise.
 **/
 function searchGiphy(searchTerm) {
   return new Promise(function (resolve, reject) {
