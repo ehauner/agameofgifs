@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
 import './App.css';
 var Rebase = require('re-base');
-import Game from './components/Game.js'
 import {populateFromReddit} from './api/Reddit.js'
+import Game from './components/Game.js';
+import Welcome from './components/Welcome.js';
 
 var base = Rebase.createClass({
   apiKey: "AIzaSyDxZeKOuO8GBsxCRdx2VZNZYoMuC5WVgQw",
@@ -175,7 +176,9 @@ class App extends Component {
               players={this.state.players}
               prompt={this.state.reactionPrompt}/>
     } else {
-      return <button type="button" onClick={this.onJoinGame}>Join Game</button>;
+      return (
+        <Welcome onJoinGame={() => this.onJoinGame()}/>
+      )
     }
   }
 
