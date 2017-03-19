@@ -1,10 +1,7 @@
 import React, { Component } from 'react';
 import './App.css';
 var Rebase = require('re-base');
-import Header from './components/Header.js'
-import GifTable from './components/GifTable.js'
-import Footer from './components/Footer.js'
-import SearchBar from './components/SearchBar.js'
+import Game from './components/Game.js'
 
 var base = Rebase.createClass({
   apiKey: "AIzaSyDxZeKOuO8GBsxCRdx2VZNZYoMuC5WVgQw",
@@ -16,61 +13,92 @@ var base = Rebase.createClass({
 
 
 class App extends Component {
-
   constructor(props) {
     super(props);
     this.state = {
-      playerId: 0,
-      isGameMaster: true,
-      round: null,
-      selectedGif: null,
-    }
-    this.selectGif = this.selectGif.bind(this);
+      playerId: null,
+      gifs: null,
+      gameMaster: null,
+      winningGif: null
+    };
+    this.onNewRound = this.setStateFromRounds.bind(this);
+    this.onJoinGame = this.onJoinGame.bind(this);
   }
 
-  componentDidMount(){
-    base.syncState('round', {
-      context: this,
-      state: 'round'
-    });
-  }
-
-  // Push winning id to Firebase
-  submitGif() {
-    base.push('gifs', {
-      data: {
-        url: this.state.selectedGif,
-        player: this.state.playerId
-      },
-      then(err){
-        if(err){
-          console.error(err);
+  setStateFromRounds(roundsData) {
+    const currentRound = roundsData[roundsData.length - 1];
+    if (currentRound) {
+      this.setState(
+        {
+            gifs: currentRound.gifs,
+            gameMaster: currentRound.gameMaster,
+            winningGif: currentRound.winningGif
         }
+      );
+    }
+  }
+
+  onJoinGame() {
+    base.listenTo('rounds', {
+      context: this,
+      asArray: true,
+      then(roundsData) {
+        this.setStateFromRounds(roundsData);
       }
     });
+
+    base.push('players', {
+      data: {
+        score: 0
+      }
+    }).then(newPlayer => {
+      this.setState({playerId: newPlayer.key});
+      base.fetch('rounds', {
+        context: this,
+        asArray: true
+      }).then(data => {
+        if (data.length === 0) {
+          base.push('rounds', {
+            data: {
+              gameMaster: this.state.playerId
+            }
+          }).then(newRound => {
+            this.setState(
+              {
+                gifs: [],
+                gameMaster: this.state.playerId,
+                winningGif: null
+              }
+            );
+          }).catch(err => {
+            console.log(err);
+          });
+        } else {
+          this.setStateFromRounds(data);
+        }
+      }).catch(error => {
+        console.log(error);
+      });
+    }).catch(err => {
+      console.log(err);
+    });
   }
 
-  selectGif(url) {
-    this.setState({
-      selectedGif: url
-    })
-  }
-
-  getDummyGifUrls() {
-      return( ['https://media.giphy.com/media/l0Iy59GA3gtCEgBkk/giphy.gif',
-                'https://media.giphy.com/media/3ohze1TZQRsSB7ZzBm/giphy.gif',
-                'https://media.giphy.com/media/4QdAF8Mby9vW0/giphy.gif',
-                'https://media.giphy.com/media/l0K4fIEZ1FFiWFJPq/giphy.gif'
-            ])
+  getGameRendering() {
+    if (this.state.playerId) {
+      return <Game gifs={this.state.gifs}
+              isGameMaster={this.state.gameMaster === this.state.playerId}
+              winningGif={this.state.winningGif}
+              playerId={this.state.playerId}/>
+    } else {
+      return <button type="button" onClick={this.onJoinGame}>Join Game</button>;
+    }
   }
 
   render() {
     return (
       <div className="App">
-        <Header isGameMaster={this.state.isGameMaster} playerId={this.state.playerId}/>
-        <SearchBar selectGif={(url) => this.selectGif(url)} selectedGif={this.state.selectedGif} />
-        <p>Round: {this.state.round}</p>
-        <Footer submitGif={() => this.submitGif()} />
+        {this.getGameRendering()}
       </div>
     );
   }
