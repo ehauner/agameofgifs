@@ -37,9 +37,13 @@ class App extends Component {
   setStateFromRounds(roundsData) {
     const currentRound = roundsData[roundsData.length - 1];
     if (currentRound) {
-      const modUrls = Object.keys(currentRound.gifs).map(key => {
-        return currentRound.gifs[key];
-      })
+      if (currentRound.gifs != null) {
+        const modUrls = Object.keys(currentRound.gifs).map(key => {
+          return currentRound.gifs[key];
+        });
+      } else {
+        const modUrls = [];
+      }
       this.setState(
         {
             urls: modUrls,
