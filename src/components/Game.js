@@ -4,6 +4,7 @@ var Rebase = require('re-base');
 import Header from './Header.js'
 import Footer from './Footer.js'
 import SearchBar from './SearchBar.js'
+import Showdown from './Showdown.js'
 
 var base = Rebase.createClass({
   apiKey: "AIzaSyDxZeKOuO8GBsxCRdx2VZNZYoMuC5WVgQw",
