@@ -22,7 +22,7 @@ export default class Game extends Component {
     this.state = {
       selectedGif: null,
       hasSubmitted: false,
-      reactionPrompt: null,
+      reactionPrompt: this.props.prompt,
       showLeaderBoard: false,
     }
 
@@ -143,20 +143,20 @@ componentWillUpdate(nextProps, nextState) {
     if (this.state.hasSubmitted) {
       return (
         <div className="Game">
-          <Header isGameMaster={this.props.isGameMaster} playerId={this.props.playerId} toggleLeaderBoard={() => this.toggleLeaderBoard()} players={this.props.players} showLeaderBoard={this.state.showLeaderBoard}/>
-          <Showdown style={{marginTop: '48px'}} urls={modUrls} selectGif={(url) => this.selectGif(url)} selectedGif={this.state.selectedGif}  />
+          <Header isGameMaster={this.props.isGameMaster} playerId={this.props.playerId} toggleLeaderBoard={() => this.toggleLeaderBoard()} players={this.props.players} showLeaderBoard={this.state.showLeaderBoard} reactionPrompt={this.state.reactionPrompt}/>
+          <Showdown urls={modUrls} selectGif={(url) => this.selectGif(url)} selectedGif={this.state.selectedGif}  />
         </div>);
     } else if (this.props.isGameMaster) {
       return (
         <div className="Game">
-          <Header isGameMaster={this.props.isGameMaster} playerId={this.props.playerId} toggleLeaderBoard={() => this.toggleLeaderBoard()} players={this.props.players} showLeaderBoard={this.state.showLeaderBoard}/>
+          <Header isGameMaster={this.props.isGameMaster} playerId={this.props.playerId} toggleLeaderBoard={() => this.toggleLeaderBoard()} players={this.props.players} showLeaderBoard={this.state.showLeaderBoard} reactionPrompt={this.state.reactionPrompt}/>
           <Showdown urls={modUrls} selectGif={(url) => this.selectGif(url)} selectedGif={this.state.selectedGif} />
           <Footer submitGif={() => this.submitGif()}/>
         </div>);
     } else {
       return (
         <div className="Game">
-          <Header isGameMaster={this.props.isGameMaster} playerId={this.props.playerId} toggleLeaderBoard={() => this.toggleLeaderBoard()} players={this.props.players} showLeaderBoard={this.state.showLeaderBoard}/>
+          <Header isGameMaster={this.props.isGameMaster} playerId={this.props.playerId} toggleLeaderBoard={() => this.toggleLeaderBoard()} players={this.props.players} showLeaderBoard={this.state.showLeaderBoard} reactionPrompt={this.state.reactionPrompt}/>
           <SearchBar selectGif={(url) => this.selectGif(url)} selectedGif={this.state.selectedGif} />
           <Footer submitGif={() => this.submitGif()} />
         </div>);

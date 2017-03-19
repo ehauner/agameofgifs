@@ -8,7 +8,7 @@ const styles = {
     top: 0,
     backgroundColor: '#222',
     color: 'white',
-    height: '38px',
+    height: '90px',
     paddingTop: '6px',
     width: '100%',
     zIndex: '100',
@@ -18,6 +18,11 @@ const styles = {
     backgroundColor: 'black',
     border: 'none',
     borderRadius : '5px',
+  },
+  prompt: {
+    color: 'white',
+    width: '90%',
+    margin: '10px auto',
   }
 };
 
@@ -29,6 +34,7 @@ export default class Header extends Component {
 
   render() {
     let role = this.getRole();
+    console.log(this.props);
     if (this.props.showLeaderBoard) {
       return (
         <div style={styles.header}>
@@ -47,6 +53,7 @@ export default class Header extends Component {
               </tr>
             </tbody>
           </table>
+          <p style={styles.prompt}>{this.props.reactionPrompt}</p>
           <LeaderBoard players={this.props.players} playerId={this.props.playerId} />
         </div>
       )
@@ -68,6 +75,7 @@ export default class Header extends Component {
               </tr>
             </tbody>
           </table>
+          <p style={styles.prompt}>{this.props.reactionPrompt}</p>
         </div>
       )
     }
