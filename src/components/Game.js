@@ -91,13 +91,13 @@ export default class Game extends Component {
   }
 
   getGameRendering() {
-    if (this.state.hasSubmitted) {
+    if (this.props.hasSubmitted) {
       return (
         <div className="Game">
           <Header isGameMaster={this.props.isGameMaster} playerId={this.props.playerId}/>
           <Showdown gifs={this.props.gifs} isGameMaster={this.props.isGameMaster} />
         </div>);
-    } else if (this.state.isGameMaster) {
+    } else if (this.props.isGameMaster) {
       return (
         <div className="Game">
           <Header isGameMaster={this.props.isGameMaster} playerId={this.props.playerId}/>
