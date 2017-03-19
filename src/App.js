@@ -22,7 +22,7 @@ class App extends Component {
       winningGif: null,
       roundId: null
     };
-    this.onNewRound = this.setStateFromRounds.bind(this);
+    this.setStateFromRounds = this.setStateFromRounds.bind(this);
     this.onJoinGame = this.onJoinGame.bind(this);
   }
 
@@ -88,10 +88,11 @@ class App extends Component {
   }
 
   getGameRendering() {
-    if (this.state.playerId) {
+    if (this.state.winningGif != null) {
+      return <img src={this.state.winningGif} alt={'gif'}/>
+    } else if (this.state.playerId) {
       return <Game gifs={this.state.gifs}
               isGameMaster={this.state.gameMaster === this.state.playerId}
-              winningGif={this.state.winningGif}
               playerId={this.state.playerId}
               roundId={this.state.roundId}/>
     } else {
