@@ -111,11 +111,11 @@ class App extends Component {
     if (this.state.winningGif != null) {
       base.fetch('gifs', {
         context: this,
-        asArray: false
+        asArray: true
       }).then(gifs => {
         let winningGifUrl = null;
         for (let i = 0; i < gifs.length; i++) {
-          if (gifs[i].url === this.state.winningGif) {
+          if (gifs[i].key === this.state.winningGif) {
             winningGifUrl = gifs[i].url;
             break;
           }
