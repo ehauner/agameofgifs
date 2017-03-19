@@ -91,20 +91,25 @@ export default class Game extends Component {
   }
 
   getGameRendering() {
-    if (this.props.hasSubmitted) {
+    console.log(this.props);
+    console.log(this.state);
+    if (this.state.hasSubmitted) {
+      console.log(1);
       return (
         <div className="Game">
           <Header isGameMaster={this.props.isGameMaster} playerId={this.props.playerId}/>
-          <Showdown gifs={this.props.gifs} isGameMaster={this.props.isGameMaster} />
+          <Showdown urls={this.props.gifs} isGameMaster={this.props.isGameMaster} selectGif={(url) => this.selectGif(url)} selectedGif={this.state.selectedGif} />
         </div>);
     } else if (this.props.isGameMaster) {
+      console.log(2);
       return (
         <div className="Game">
           <Header isGameMaster={this.props.isGameMaster} playerId={this.props.playerId}/>
-          <Showdown gifs={this.props.gifs} isGameMaster={this.props.isGameMaster} />
+          <Showdown urls={this.props.gifs} isGameMaster={this.props.isGameMaster} selectGif={(url) => this.selectGif(url)} selectedGif={this.state.selectedGif} />
           <Footer submitGif={() => this.submitGif()}/>
         </div>);
     } else {
+      console.log(3);
       return (
         <div className="Game">
           <Header isGameMaster={this.props.isGameMaster} playerId={this.props.playerId}/>

@@ -17,7 +17,7 @@ class App extends Component {
     super(props);
     this.state = {
       playerId: null,
-      gifs: null,
+      urls: null,
       gameMaster: null,
       winningGif: null,
       roundId: null
@@ -39,7 +39,7 @@ class App extends Component {
     if (currentRound) {
       this.setState(
         {
-            gifs: currentRound.gifs,
+            urls: currentRound.gifs,
             gameMaster: currentRound.gameMaster,
             winningGif: currentRound.winningGif,
             roundId: currentRound.key
@@ -75,7 +75,7 @@ class App extends Component {
           }).then(newRound => {
             this.setState(
               {
-                gifs: [],
+                urls: [],
                 gameMaster: this.state.playerId,
                 winningGif: null,
                 roundId: newRound.key
@@ -99,7 +99,7 @@ class App extends Component {
     if (this.state.winningGif != null) {
       return <img src={this.state.winningGif} alt={'gif'}/>
     } else if (this.state.playerId) {
-      return <Game gifs={this.state.gifs}
+      return <Game urls={this.state.urls}
               isGameMaster={this.state.gameMaster === this.state.playerId}
               playerId={this.state.playerId}
               roundId={this.state.roundId}/>

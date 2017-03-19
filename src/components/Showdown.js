@@ -11,9 +11,10 @@ const styles={
 export default class Showdown extends Component {
 
   render() {
+    console.log(this.props);
     return (
       <GifTable
-        urls={this.props.submittedUrls}
+        urls={this.props.urls}
         selectGif={this.props.selectGif}
         selectedGif={this.props.selectedGif}
       />
