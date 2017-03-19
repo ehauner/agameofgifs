@@ -8,12 +8,18 @@ const styles = {
 };
 
 export default class Gif extends Component {
+
   componentDidMount() {
-  //  console.log(this.props.url)
+    console.log(this.props);
   }
+
+  selectGif() {
+    this.props.selectGif(this.props.url);
+  }
+
   render() {
     return (
-      <img style={styles.gif} src={this.props.url} alt={'gif'}/>
+      <img style={styles.gif} src={this.props.url} alt={'gif'} onClick={() => this.selectGif()}/>
     )
   }
 }

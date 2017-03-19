@@ -20,10 +20,12 @@ class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      playerId: null,
+      playerId: 0,
       isGameMaster: true,
       round: null,
+      selectedGif: null,
     }
+    this.selectGif = this.selectGif.bind(this);
   }
 
   componentDidMount(){
@@ -33,6 +35,35 @@ class App extends Component {
     });
   }
 
+  // Push winning id to Firebase
+  submitGif() {
+    console.log(this.state);
+    // base.push('gifs', {
+    //   data: {
+    //     url: this.state.selectedGif,
+    //     player: this.state.playerId
+    //   },
+    //   then(err){
+    //     console.log(console.error(err))
+    //   }
+    // });
+  }
+
+  selectGif(url) {
+    console.log(this.state);
+    console.log(this.props);
+    this.setState({
+      selectedGif: url
+    })
+  }
+
+  getDummyGifUrls() {
+      return( ['https://media.giphy.com/media/l0Iy59GA3gtCEgBkk/giphy.gif',
+                'https://media.giphy.com/media/3ohze1TZQRsSB7ZzBm/giphy.gif',
+                'https://media.giphy.com/media/4QdAF8Mby9vW0/giphy.gif',
+                'https://media.giphy.com/media/l0K4fIEZ1FFiWFJPq/giphy.gif'
+            ])
+  }
 
   render() {
     return (
@@ -40,7 +71,9 @@ class App extends Component {
         <Header isGameMaster={this.state.isGameMaster} playerId={this.state.playerId}/>
         <SearchBar />
         <p>Round: {this.state.round}</p>
-        <Footer />
+        <GifTable urls={this.getDummyGifUrls()} selectGif={() => this.selectGif()} />
+        <Footer submitGif={this.submitGif} />
+        <button onClick={() => this.submitGif()}>Submit</button>
       </div>
     );
   }

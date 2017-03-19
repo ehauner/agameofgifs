@@ -12,7 +12,7 @@ export default class SearchBar extends Component {
 
   constructor(props) {
     super(props)
-    this.state={
+    this.state = {
       searchResults: null,
     }
   }
@@ -20,8 +20,8 @@ export default class SearchBar extends Component {
   handleSearchArg(event) {
     event.preventDefault();
     const text = ReactDOM.findDOMNode(this.refs.searchBar).value.trim();
-    searchGiphy(text).then((data) =>{
-      this.setState({ searchResults: data})}).catch((err)=>console.log(err));
+    searchGiphy(text).then((data) => {
+      this.setState({searchResults: data})}).catch((err) => console.log(err));
     ReactDOM.findDOMNode(this.refs.searchBar).value = '';
   }
 
