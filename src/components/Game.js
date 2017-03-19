@@ -28,17 +28,20 @@ export default class Game extends Component {
       data: {
         url: this.state.selectedGif,
         player: this.props.playerId
-      },
-      then(err){
-        if(err) {
-          console.error(err);
-        }
       }
+    }).then(newGif => {
+      console.log(this.props);
+      base.push(`rounds/${this.props.roundId}/gifs`, {
+        data: newGif.key
+      }).catch(err => {
+        console.log(err);
+      })
+    }).catch(err => {
+      console.log(err);
     });
   }
 
   selectGif(url) {
-    console.log(url);
     this.setState({
       selectedGif: url
     });
