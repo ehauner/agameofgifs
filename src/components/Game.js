@@ -11,10 +11,9 @@ var base = Rebase.createClass({
   databaseURL: "https://gameofgifs-ad3d4.firebaseio.com",
   storageBucket: "gameofgifs-ad3d4.appspot.com",
   messagingSenderId: "582686608727"
-}, 'App');
+}, 'Game');
 
-
-class App extends Component {
+export default class Game extends Component {
 
   constructor(props) {
     super(props);
@@ -40,9 +39,10 @@ class App extends Component {
   }
 
   selectGif(url) {
+    console.log(url);
     this.setState({
       selectedGif: url
-    })
+    });
   }
 
   render() {
@@ -50,7 +50,7 @@ class App extends Component {
       //TODO: CSS?
       <div className="Game">
         <Header isGameMaster={this.props.isGameMaster} playerId={this.props.playerId}/>
-        <SearchBar />
+        <SearchBar selectGif={(url) => this.selectGif(url)} selectedGif={this.state.selectedGif} />
         <p>Round: {this.props.round}</p>
         <Footer submitGif={this.submitGif} />
         <button onClick={() => this.submitGif()}>Submit</button>
@@ -58,5 +58,3 @@ class App extends Component {
     );
   }
 }
-
-export default App;
