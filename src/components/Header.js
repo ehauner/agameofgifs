@@ -1,11 +1,17 @@
 import React, { Component } from 'react';
 
 export default class Header extends Component {
-    render() {
-      return (
-        <div className="App-header">
-          <h2>Game Master</h2>
-        </div>
-      )
+
+  getRole() {
+    return (this.props.isGameMaster ? 'Game Master' : 'Player');
+  }
+
+  render() {
+    let role = this.getRole();
+    return (
+      <div className="App-header">
+        <h2>{role}</h2>
+      </div>
+    )
   }
 }
