@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import './App.css';
 var Rebase = require('re-base');
+import {populateFromReddit} from './api/Reddit.js'
 import Game from './components/Game.js';
 import Welcome from './components/Welcome.js';
 
@@ -15,6 +16,7 @@ var base = Rebase.createClass({
 
 class App extends Component {
   constructor(props) {
+
     super(props);
     this.state = {
       playerId: null,
@@ -24,14 +26,33 @@ class App extends Component {
       winningGifUrl: null,
       roundId: null,
       players: null,
+      reactionPrompt: null,
     };
     this.setStateFromRounds = this.setStateFromRounds.bind(this);
     this.onJoinGame = this.onJoinGame.bind(this);
   }
 
 
+  // incrementReactionIndex() {
+  //   console.log(`incrementing counter befor it is ${this.state.reactionIndex}`);
+  //   this.setState({reactionIndex: (1+ this.state.reactionIndex)})
+  //   console.log(`incrementing counter after it is ${this.state.reactionIndex}`);
+  //
+  // }
 
   componentDidMount() {
+    base.listenTo('ReactionPrompts', {
+      context: this,
+      isArray: true,
+      then(prompts) {
+        for (let i = 0; i<prompts.length; i++) {
+          if (prompts[i].selected === 1) {
+            this.setState({reactionPrompt: prompts[i].prompt})
+          }
+        }
+      }
+    }
+    )
    window.addEventListener("beforeunload", function (e) {
       var dialogText = 'If you leave, you will lose your score.';
       e.returnValue = dialogText;
@@ -48,7 +69,6 @@ class App extends Component {
          arrayPlayers.push({key: this.state.players[i].key, score: this.state.players[i].score});
      }
       this.setState({ players: arrayPlayers});
-      console.log(this.state.players);
       }
 
   })
@@ -153,7 +173,8 @@ class App extends Component {
               isGameMaster={this.state.gameMaster === this.state.playerId}
               playerId={this.state.playerId}
               roundId={this.state.roundId}
-              players = {this.state.players}/>
+              players={this.state.players}
+              prompt={this.state.reactionPrompt}/>
     } else {
       return (
         <Welcome onJoinGame={() => this.onJoinGame()}/>

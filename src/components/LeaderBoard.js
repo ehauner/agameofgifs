@@ -11,7 +11,6 @@ const styles={
   },
 };
 
-
 export default class LeaderBoard extends Component {
 
   sortPlayers(players) {
