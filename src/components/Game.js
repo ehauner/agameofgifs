@@ -56,10 +56,6 @@ export default class Game extends Component {
           }
         }
 
-        console.log(winningGifId);
-        console.log(winningPlayerId);
-        console.log(this.state.selectedGif);
-        console.log(gifs);
         base.post(`players/${winningPlayerId}/score`, {
             data: newWinningPlayerScore
         });
