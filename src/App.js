@@ -25,6 +25,14 @@ class App extends Component {
     this.onJoinGame = this.onJoinGame.bind(this);
   }
 
+  componentDidMount() {
+   window.addEventListener("beforeunload", function (e) {
+      var dialogText = 'If you leave, you will lose your score.';
+      e.returnValue = dialogText;
+      return dialogText;
+    })
+  }
+
   setStateFromRounds(roundsData) {
     const currentRound = roundsData[roundsData.length - 1];
     if (currentRound) {
