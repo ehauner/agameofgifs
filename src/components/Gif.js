@@ -7,6 +7,9 @@ const styles = {
 };
 
 export default class Gif extends Component {
+  componentDidMount() {
+  //  console.log(this.props.url)
+  }
   render() {
     return (
       <img style={styles.gif} src={this.props.url} alt={'gif'}/>

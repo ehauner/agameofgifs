@@ -2,9 +2,7 @@ import React, { Component } from 'react';
 import Gif from './Gif.js'
 
 export default class GifTable extends Component {
-    componentDidMount() {
-        console.log(this.props);
-    }
+
 
     render() {
       return (
@@ -17,6 +15,6 @@ export default class GifTable extends Component {
 
   getGifs(){
       return this.props.urls.map((gifurl) =>
-        <Gif key = {Math.random()} url={gifurl}></Gif>)
+        <Gif key={Math.random()} url={gifurl}></Gif>)
   }
 }
