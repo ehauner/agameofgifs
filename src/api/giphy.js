@@ -12,8 +12,8 @@ function searchGiphy(searchTerm) {
     xmlhttp.onreadystatechange = function() {
       if (xmlhttp.readyState === XMLHttpRequest.DONE) {
         if (xmlhttp.status === 200) {
-          const urls = extractUrls(xmlhttp.responseText);
-          resolve(urls);
+          const imageUrls = extractUrls(xmlhttp.responseText);
+          resolve(imageUrls);
         }
         else {
           reject(`Request failed with response code ${xmlhttp.status}.`);
