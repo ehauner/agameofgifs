@@ -32,7 +32,7 @@ export default class Game extends Component {
 
   // Push winning id to Firebase
   submitGif() {
-    if (this.state.isGameMaster) {
+    if (this.props.isGameMaster) {
       base.fetch('gifs', {
         context: this,
         asArray: true
@@ -91,25 +91,20 @@ export default class Game extends Component {
   }
 
   getGameRendering() {
-    console.log(this.props);
-    console.log(this.state);
     if (this.state.hasSubmitted) {
-      console.log(1);
       return (
         <div className="Game">
           <Header isGameMaster={this.props.isGameMaster} playerId={this.props.playerId}/>
-          <Showdown urls={this.props.gifs} isGameMaster={this.props.isGameMaster} selectGif={(url) => this.selectGif(url)} selectedGif={this.state.selectedGif} />
+          <Showdown urls={this.props.urls} />
         </div>);
     } else if (this.props.isGameMaster) {
-      console.log(2);
       return (
         <div className="Game">
           <Header isGameMaster={this.props.isGameMaster} playerId={this.props.playerId}/>
-          <Showdown urls={this.props.gifs} isGameMaster={this.props.isGameMaster} selectGif={(url) => this.selectGif(url)} selectedGif={this.state.selectedGif} />
+          <Showdown urls={this.props.urls} />
           <Footer submitGif={() => this.submitGif()}/>
         </div>);
     } else {
-      console.log(3);
       return (
         <div className="Game">
           <Header isGameMaster={this.props.isGameMaster} playerId={this.props.playerId}/>
