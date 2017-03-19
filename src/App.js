@@ -29,9 +29,9 @@ class App extends Component {
     const currentRound = roundsData[roundsData.length - 1];
     this.setState(
       {
-          gifs: currentRound.gifs;
-          gameMaster: currentRound.gameMaster;
-          winningGif: currentRound.winningGif;
+          gifs: currentRound.gifs,
+          gameMaster: currentRound.gameMaster,
+          winningGif: currentRound.winningGif
       }
     );
   }
