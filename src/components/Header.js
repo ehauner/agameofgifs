@@ -10,6 +10,7 @@ const styles = {
     height: '38px',
     paddingTop: '12px',
     width: '100%',
+    zIndex: '100',
   },
 };
 
