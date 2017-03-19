@@ -41,8 +41,18 @@ class App extends Component {
       state: 'players',
       asArray: true,
       keepKeys: true,
-  });
-  }
+      then() {
+      let arrayPlayers = [];
+      for (let i=0; i<this.state.players.length; i++) {
+         arrayPlayers.push({key: this.state.players[i].key, score: this.state.players[i].score});
+     }
+      this.setState({ players: arrayPlayers});
+      console.log(this.state.players);
+      }
+
+  })
+}
+
 
   setStateFromRounds(roundsData) {
     const currentRound = roundsData[roundsData.length - 1];

@@ -5,6 +5,7 @@ import Header from './Header.js'
 import Footer from './Footer.js'
 import SearchBar from './SearchBar.js'
 import Showdown from './Showdown.js'
+import LeaderBoard from './LeaderBoard.js'
 
 var base = Rebase.createClass({
   apiKey: "AIzaSyDxZeKOuO8GBsxCRdx2VZNZYoMuC5WVgQw",
@@ -116,6 +117,7 @@ export default class Game extends Component {
     } else if (this.props.isGameMaster) {
       return (
         <div className="Game">
+          <LeaderBoard players = {this.props.players}/>
           <Header isGameMaster={this.props.isGameMaster} playerId={this.props.playerId}/>
           <Showdown urls={modUrls} selectGif={(url) => this.selectGif(url)} selectedGif={this.state.selectedGif} />
           <Footer submitGif={() => this.submitGif()}/>
@@ -123,6 +125,7 @@ export default class Game extends Component {
     } else {
       return (
         <div className="Game">
+          <LeaderBoard players = {this.props.players}/>
           <Header isGameMaster={this.props.isGameMaster} playerId={this.props.playerId}/>
           <SearchBar selectGif={(url) => this.selectGif(url)} selectedGif={this.state.selectedGif} />
           <Footer submitGif={() => this.submitGif()} />
