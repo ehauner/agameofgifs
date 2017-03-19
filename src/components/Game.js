@@ -116,7 +116,7 @@ export default class Game extends Component {
       return (
         <div className="Game">
           <Header isGameMaster={this.props.isGameMaster} playerId={this.props.playerId} toggleLeaderBoard={() => this.toggleLeaderBoard()} players={this.props.players} showLeaderBoard={this.state.showLeaderBoard}/>
-          <Showdown urls={modUrls} selectGif={(url) => this.selectGif(url)} selectedGif={this.state.selectedGif}  />
+          <Showdown style={{marginTop: '48px'}} urls={modUrls} selectGif={(url) => this.selectGif(url)} selectedGif={this.state.selectedGif}  />
         </div>);
     } else if (this.props.isGameMaster) {
       return (
