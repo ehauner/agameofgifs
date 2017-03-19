@@ -27,13 +27,15 @@ class App extends Component {
 
   setStateFromRounds(roundsData) {
     const currentRound = roundsData[roundsData.length - 1];
-    this.setState(
-      {
-          gifs: currentRound.gifs,
-          gameMaster: currentRound.gameMaster,
-          winningGif: currentRound.winningGif
-      }
-    );
+    if (currentRound) {
+      this.setState(
+        {
+            gifs: currentRound.gifs,
+            gameMaster: currentRound.gameMaster,
+            winningGif: currentRound.winningGif
+        }
+      );
+    }
   }
 
   onJoinGame() {
@@ -84,7 +86,10 @@ class App extends Component {
 
   getGameRendering() {
     if (this.state.playerId) {
-      return <Game round={this.state.round} playerId={this.state.playerId}/>
+      return <Game gifs={this.state.gifs}
+              isGameMaster={this.state.gameMaster === this.state.playerId}
+              winningGif={this.state.winningGif}
+              playerId={this.state.playerId}/>
     } else {
       return <button type="button" onClick={this.onJoinGame}>Join Game</button>;
     }
