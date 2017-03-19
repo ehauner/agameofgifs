@@ -17,6 +17,6 @@ export default class GifTable extends Component {
 
   getGifs(){
       return this.props.urls.map((gifurl) =>
-        <Gif key={Math.random()} url={gifurl}></Gif>)
+        <Gif key={Math.random()} url={gifurl} selectGif={(url) => this.props.selectGif(url)}></Gif>)
   }
 }
