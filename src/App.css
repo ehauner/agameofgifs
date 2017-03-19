@@ -1,5 +1,8 @@
 .App {
   text-align: center;
+  width: 100%;
+  min-height: 100%;
+  padding-bottom: 50px;
 }
 
 h2 {
@@ -20,6 +23,10 @@ h2 {
 
 .App-intro {
   font-size: large;
+}
+
+.Footer {
+  background-color: 'black';
 }
 
 @keyframes App-logo-spin {

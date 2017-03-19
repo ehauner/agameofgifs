@@ -26,7 +26,14 @@ class App extends Component {
   }
 
   setStateFromRounds(roundsData) {
-    console.log(roundsData);
+    const currentRound = roundsData[roundsData.length - 1];
+    this.setState(
+      {
+          gifs: currentRound.gifs;
+          gameMaster: currentRound.gameMaster;
+          winningGif: currentRound.winningGif;
+      }
+    );
   }
 
   onJoinGame() {
@@ -60,7 +67,7 @@ class App extends Component {
                 gameMaster: this.state.playerId,
                 winningGif: null
               }
-            )
+            );
           }).catch(err => {
             console.log(err);
           });
