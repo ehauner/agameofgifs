@@ -29,12 +29,15 @@ export default class Game extends Component {
       data: {
         url: this.state.selectedGif,
         player: this.props.playerId
-      },
-      then(err){
-        if(err) {
-          console.error(err);
-        }
       }
+    }).then(newGif => {
+      base.push(`rounds/${this.props.roundId}/gifs`, {
+        data: newGif.key
+      }).catch(err => {
+        console.log(err);
+      })
+    }).catch(err => {
+      console.log(err);
     });
   }
 
@@ -52,7 +55,7 @@ export default class Game extends Component {
         <Header isGameMaster={this.props.isGameMaster} playerId={this.props.playerId}/>
         <SearchBar selectGif={(url) => this.selectGif(url)} selectedGif={this.state.selectedGif} />
         <p>Round: {this.props.round}</p>
-        <Footer submitGif={this.submitGif} />
+        <Footer submitGif={this.submitGif.bind(this)} />
         <button onClick={() => this.submitGif()}>Submit</button>
       </div>
     );

@@ -19,7 +19,8 @@ class App extends Component {
       playerId: null,
       gifs: null,
       gameMaster: null,
-      winningGif: null
+      winningGif: null,
+      roundId: null
     };
     this.onNewRound = this.setStateFromRounds.bind(this);
     this.onJoinGame = this.onJoinGame.bind(this);
@@ -32,7 +33,8 @@ class App extends Component {
         {
             gifs: currentRound.gifs,
             gameMaster: currentRound.gameMaster,
-            winningGif: currentRound.winningGif
+            winningGif: currentRound.winningGif,
+            roundId: currentRound.key
         }
       );
     }
@@ -67,7 +69,8 @@ class App extends Component {
               {
                 gifs: [],
                 gameMaster: this.state.playerId,
-                winningGif: null
+                winningGif: null,
+                roundId: newRound.key
               }
             );
           }).catch(err => {
@@ -89,7 +92,8 @@ class App extends Component {
       return <Game gifs={this.state.gifs}
               isGameMaster={this.state.gameMaster === this.state.playerId}
               winningGif={this.state.winningGif}
-              playerId={this.state.playerId}/>
+              playerId={this.state.playerId}
+              roundId={this.state.roundId}/>
     } else {
       return <button type="button" onClick={this.onJoinGame}>Join Game</button>;
     }
