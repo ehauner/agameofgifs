@@ -1,9 +1,8 @@
 import React, { Component } from 'react';
-import '../css/GifTable.css'
-import Gif from './Gif.jsx'
+import '../css/GifTable.css';
+import Gif from './Gif.js'
 
 export default class GifTable extends Component {
-
     componentDidMount() {
         console.log(this.props);
     }

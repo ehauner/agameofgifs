@@ -1,8 +1,11 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
 import './App.css';
-import GifTable from './components/GifTable.jsx'
 var Rebase = require('re-base');
+import Header from './components/Header.js'
+import GifTable from './components/GifTable.js'
+import Footer from './components/Footer.js'
+import SearchBar from './components/SearchBar.js'
+
 var base = Rebase.createClass({
   apiKey: "AIzaSyDxZeKOuO8GBsxCRdx2VZNZYoMuC5WVgQw",
   authDomain: "gameofgifs-ad3d4.firebaseapp.com",
@@ -10,6 +13,7 @@ var base = Rebase.createClass({
   storageBucket: "gameofgifs-ad3d4.appspot.com",
   messagingSenderId: "582686608727"
 }, 'App');
+
 
 class App extends Component {
 
@@ -38,16 +42,11 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        <div className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h2>Welcome to React, Dude Man</h2>
-        </div>
-        <p className="App-intro">
-          To get started, edit <code>src/App.js</code> and save to reload.
-        </p>
-        <GifTable urls = {this.getDummyGifUrls()}></GifTable>
-        <p>{this.state.round}</p>
-        <p>sup</p>
+        <Header />
+        <SearchBar />
+        <p>Round: {this.state.round}</p>
+        <GifTable urls = {this.getDummyGifUrls()} />
+        <Footer />
       </div>
     );
   }
