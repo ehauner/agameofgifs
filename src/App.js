@@ -3,12 +3,12 @@ import logo from './logo.svg';
 import './App.css';
 var Rebase = require('re-base');
 var base = Rebase.createClass({
-      apiKey: "AIzaSyDxZeKOuO8GBsxCRdx2VZNZYoMuC5WVgQw",
-      authDomain: "gameofgifs-ad3d4.firebaseapp.com",
-      databaseURL: "https://gameofgifs-ad3d4.firebaseio.com",
-      storageBucket: "gameofgifs-ad3d4.appspot.com",
-      messagingSenderId: "582686608727"
-});
+  apiKey: "AIzaSyDxZeKOuO8GBsxCRdx2VZNZYoMuC5WVgQw",
+  authDomain: "gameofgifs-ad3d4.firebaseapp.com",
+  databaseURL: "https://gameofgifs-ad3d4.firebaseio.com",
+  storageBucket: "gameofgifs-ad3d4.appspot.com",
+  messagingSenderId: "582686608727"
+}, 'App');
 
 class App extends Component {
 
@@ -20,17 +20,10 @@ class App extends Component {
   }
 
   componentDidMount(){
-    base.syncState(`round`, {
+    base.syncState('round', {
       context: this,
-      state: 'round',
-      asArray: false
-    },
-    () => console.log('hi')
-  );
-  }
-
-  componentWillUpdate(){
-    console.log(this.state.round);
+      state: 'round'
+    });
   }
 
   render() {
