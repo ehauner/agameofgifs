@@ -1,10 +1,15 @@
 import React, { Component } from 'react';
-import '../css/Gif.css';
+
+const styles = {
+  gif: {
+    width: '33%',
+  }
+};
 
 export default class Gif extends Component {
   render() {
     return (
-      <img className='gif' src={'https://media.giphy.com/media/ZO8upuwNKfpm0/giphy.gif'} />
+      <img style={styles.gif} src={'https://media.giphy.com/media/ZO8upuwNKfpm0/giphy.gif'} alt={'gif'}/>
     )
   }
 }
