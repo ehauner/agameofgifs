@@ -20,6 +20,7 @@ class App extends Component {
       urls: null,
       gameMaster: null,
       winningGif: null,
+      winningGifUrl: null,
       roundId: null
     };
     this.setStateFromRounds = this.setStateFromRounds.bind(this);
@@ -53,6 +54,7 @@ class App extends Component {
             urls: modUrls,
             gameMaster: currentRound.gameMaster,
             winningGif: currentRound.winningGif,
+            winningGifUrl: null,
             roundId: currentRound.key
           }
         );
@@ -108,20 +110,23 @@ class App extends Component {
   }
 
   getGameRendering() {
-    if (this.state.winningGif != null) {
+    if (this.state.winningGifUrl != null && this.state.winningGif != null) {
+      return <img src={this.state.winningGifUrl} alt={'gif'}/>
+    } else if (this.state.winningGif != null) {
       base.fetch('gifs', {
         context: this,
         asArray: true
       }).then(gifs => {
-        let winningGifUrl = null;
+        let newWinningGifUrl = null;
         for (let i = 0; i < gifs.length; i++) {
           if (gifs[i].key === this.state.winningGif) {
-            winningGifUrl = gifs[i].url;
+            newWinningGifUrl = gifs[i].url;
             break;
           }
         }
-
-        return <img src={winningGifUrl} alt={'gif'}/>
+        this.setState({
+          winningGifUrl: newWinningGifUrl
+        });
       });
     } else if (this.state.playerId) {
       return <Game urls={this.state.urls}
