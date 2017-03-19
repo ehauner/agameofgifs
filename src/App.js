@@ -1,5 +1,19 @@
 import React, { Component } from 'react';
 import './App.css';
+<<<<<<< HEAD
+
+class App extends Component {
+  render() {
+    return (
+      <div className="App">
+        <div className="App-header">
+          <img src={logo} className="App-logo" alt="logo" />
+          <h2>Welcome to React, Dude Man</h2>
+        </div>
+        <p className="App-intro">
+          To get started, edit <code>src/App.js</code> and save to reload.
+        </p>
+=======
 var Rebase = require('re-base');
 import Header from './components/Header.js'
 import GifTable from './components/GifTable.js'
@@ -47,6 +61,7 @@ class App extends Component {
         <p>Round: {this.state.round}</p>
         <GifTable urls = {this.getDummyGifUrls()} />
         <Footer />
+>>>>>>> 34ee360b6c3492c4e7333910ec1936001b795481
       </div>
     );
   }
