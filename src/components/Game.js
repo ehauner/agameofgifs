@@ -20,7 +20,6 @@ export default class Game extends Component {
     this.state = {
       selectedGif: null,
     }
-    this.selectGif = this.selectGif.bind(this);
   }
 
   // Push winning id to Firebase
@@ -31,6 +30,7 @@ export default class Game extends Component {
         player: this.props.playerId
       }
     }).then(newGif => {
+      console.log(this.props);
       base.push(`rounds/${this.props.roundId}/gifs`, {
         data: newGif.key
       }).catch(err => {
@@ -42,7 +42,6 @@ export default class Game extends Component {
   }
 
   selectGif(url) {
-    console.log(url);
     this.setState({
       selectedGif: url
     });
@@ -55,8 +54,7 @@ export default class Game extends Component {
         <Header isGameMaster={this.props.isGameMaster} playerId={this.props.playerId}/>
         <SearchBar selectGif={(url) => this.selectGif(url)} selectedGif={this.state.selectedGif} />
         <p>Round: {this.props.round}</p>
-        <Footer submitGif={this.submitGif.bind(this)} />
-        <button onClick={() => this.submitGif()}>Submit</button>
+        <Footer submitGif={() => this.submitGif()} />
       </div>
     );
   }
