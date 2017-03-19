@@ -46,7 +46,11 @@ export default class Game extends Component {
             break;
           }
         }
-        base.update(`rounds/${this.props.roundId}/winningGif`, {
+        console.log(winningGifId);
+        console.log(winningPlayerId);
+        console.log(this.state.selectedGif);
+        console.log(gifs);
+        base.post(`rounds/${this.props.roundId}/winningGif`, {
           data: winningGifId
         }).then(() => {
           this.sleep(3000).then(() => {
